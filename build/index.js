@@ -26,4 +26,10 @@ function fetchJoke() {
 button === null || button === void 0 ? void 0 : button.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
     const joke = yield fetchJoke();
     console.log(joke);
+    // Exercise 2
+    const paragraph = document.getElementById('joke');
+    if (paragraph) {
+        paragraph.textContent = '';
+    }
+    paragraph === null || paragraph === void 0 ? void 0 : paragraph.append(joke);
 }));

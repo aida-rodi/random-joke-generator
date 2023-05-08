@@ -19,4 +19,11 @@ async function fetchJoke(): Promise<string> {
 button?.addEventListener('click', async () => {
   const joke = await fetchJoke();
   console.log(joke);
+  
+  // Exercise 2
+  const paragraph = document.getElementById('joke');
+  if (paragraph) {
+    paragraph.textContent = '';
+  }
+  paragraph?.append(joke);
 });
