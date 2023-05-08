@@ -1,0 +1,50 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(206, 217, 225);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 15px;
+    margin-top: 12%;
+    width: 55%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgb(75, 75, 75, 15%) 20px 25px;
+}
+
+h1 {
+    color: rgb(75, 75, 75);
+}
+
+.joke {
+    margin: 60px;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: rgb(154, 154, 154);
+}
+
+button {
+    width: 250px;
+    height: 65px;
+    margin: 25px;
+    border: none;
+    border-radius: 15px;
+    background-color: rgb(101, 148, 187);
+    color: white;
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+button:hover {
+    cursor: pointer;
+}
