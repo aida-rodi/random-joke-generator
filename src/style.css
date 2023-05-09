@@ -26,12 +26,24 @@ h1 {
     color: rgb(75, 75, 75);
 }
 
-.joke {
+.jokeParagraph {
     margin: 60px 0;
     font-size: 1.5em;
     font-weight: 500;
     text-align: center;
     color: rgb(154, 154, 154);
+}
+
+#ratingButtons {
+    display: flex;
+}
+
+.ratingBtn {
+    padding: 0;
+    margin: 0.75em;
+    width: auto;
+    height: auto;
+    background: none;
 }
 
 button {
@@ -44,6 +56,14 @@ button {
     color: white;
     font-size: 1.25em;
     font-weight: 500;
+}
+
+#btn:hover {
+    background-color: rgb(90, 134, 170);
+}
+
+#btn:active {
+    background-color: rgb(78, 118, 151);
 }
 
 button:hover {

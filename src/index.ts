@@ -1,11 +1,11 @@
-function sayHelloWorld(): void {
-  console.log("Hello World from Type Script code.");
-}
+const ratedJokes: Array<object> = [];
+let ratedJoke: any = undefined;
 
-sayHelloWorld();
+const date = new Date()
+const dateString = date.toISOString();
 
 // Exercise 1
-const button = document.getElementById('btn');
+const nextJokeButton = document.getElementById('btn');
 
 async function fetchJoke(): Promise<string> {
   const response = await fetch('https://icanhazdadjoke.com/', {
@@ -16,14 +16,49 @@ async function fetchJoke(): Promise<string> {
   return data.joke;
 }
 
-button?.addEventListener('click', async () => {
+nextJokeButton?.addEventListener('click', async () => {
+  if (ratedJoke !== undefined) {
+    ratedJokes.push(ratedJoke)
+    console.log('ratedJokes:', ratedJokes);
+  }
+
   const joke = await fetchJoke();
   console.log(joke);
   
   // Exercise 2
-  const paragraph = document.getElementById('joke');
-  if (paragraph) {
-    paragraph.textContent = '';
+  const jokeParagraph = document.getElementById('jokeParagraph');
+  if (jokeParagraph) {
+    jokeParagraph.textContent = '';
   }
-  paragraph?.append(joke);
+  jokeParagraph?.append(joke);
+
+  // Exercise 3
+  const ratingButtons = document.getElementById('ratingButtons') as HTMLDivElement
+  ratingButtons.style.display = 'block'
+
+  ratedJoke = {
+    joke: joke,
+    score: undefined,
+    date: dateString,
+  };
+  //console.log(ratedJoke)
+});
+
+const rating1 = document.getElementById('rating1') as HTMLButtonElement
+const rating2 = document.getElementById('rating2') as HTMLButtonElement
+const rating3 = document.getElementById('rating3') as HTMLButtonElement
+
+rating1?.addEventListener('click', () => {
+  ratedJoke.score = 1
+  //console.log(ratedJoke);
+});
+
+rating2?.addEventListener('click', () => {
+  ratedJoke.score = 2
+  //console.log(ratedJoke);
+});
+
+rating3?.addEventListener('click', () => {
+  ratedJoke.score = 3
+  //console.log(ratedJoke);
 });
