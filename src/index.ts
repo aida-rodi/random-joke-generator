@@ -42,13 +42,13 @@ window.addEventListener('load', async () => {
   if (weatherParagraph) {
     weatherParagraph.textContent = '';
   }
-  weatherParagraph?.append(`${weatherIcon}  |  ${currentWeather.temperature}`);
+  weatherParagraph?.append(`${weatherIcon}  ${currentWeather.temperature}ºC`);
 });
 
 // **************
 
 const ratedJokes: Array<object> = [];
-let ratedJoke: any = undefined;
+let ratedJoke: any = {score: undefined};
 
 const date = new Date()
 const dateString = date.toISOString();
@@ -66,7 +66,7 @@ async function fetchJoke(): Promise<string> {
 }
 
 nextJokeButton?.addEventListener('click', async () => {
-  if (ratedJoke !== undefined) {
+  if (ratedJoke.score !== undefined) {
     ratedJokes.push(ratedJoke)
     console.log('ratedJokes:', ratedJokes);
   }
@@ -99,15 +99,12 @@ const rating3 = document.getElementById('rating3') as HTMLButtonElement
 
 rating1?.addEventListener('click', () => {
   ratedJoke.score = 1
-  //console.log(ratedJoke);
 });
 
 rating2?.addEventListener('click', () => {
   ratedJoke.score = 2
-  //console.log(ratedJoke);
 });
 
 rating3?.addEventListener('click', () => {
   ratedJoke.score = 3
-  //console.log(ratedJoke);
 });

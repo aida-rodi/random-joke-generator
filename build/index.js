@@ -60,11 +60,11 @@ window.addEventListener('load', () => __awaiter(void 0, void 0, void 0, function
     if (weatherParagraph) {
         weatherParagraph.textContent = '';
     }
-    weatherParagraph === null || weatherParagraph === void 0 ? void 0 : weatherParagraph.append(`${weatherIcon}  |  ${currentWeather.temperature}`);
+    weatherParagraph === null || weatherParagraph === void 0 ? void 0 : weatherParagraph.append(`${weatherIcon}  ${currentWeather.temperature}ºC`);
 }));
 // **************
 const ratedJokes = [];
-let ratedJoke = undefined;
+let ratedJoke = { score: undefined };
 const date = new Date();
 const dateString = date.toISOString();
 // Exercise 1
@@ -79,7 +79,7 @@ function fetchJoke() {
     });
 }
 nextJokeButton === null || nextJokeButton === void 0 ? void 0 : nextJokeButton.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
-    if (ratedJoke !== undefined) {
+    if (ratedJoke.score !== undefined) {
         ratedJokes.push(ratedJoke);
         console.log('ratedJokes:', ratedJokes);
     }
@@ -106,13 +106,10 @@ const rating2 = document.getElementById('rating2');
 const rating3 = document.getElementById('rating3');
 rating1 === null || rating1 === void 0 ? void 0 : rating1.addEventListener('click', () => {
     ratedJoke.score = 1;
-    //console.log(ratedJoke);
 });
 rating2 === null || rating2 === void 0 ? void 0 : rating2.addEventListener('click', () => {
     ratedJoke.score = 2;
-    //console.log(ratedJoke);
 });
 rating3 === null || rating3 === void 0 ? void 0 : rating3.addEventListener('click', () => {
     ratedJoke.score = 3;
-    //console.log(ratedJoke);
 });
