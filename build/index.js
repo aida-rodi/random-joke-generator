@@ -68,7 +68,6 @@ let ratedJoke = { score: undefined };
 const date = new Date();
 const dateString = date.toISOString();
 // Exercise 1
-const nextJokeButton = document.getElementById('btn');
 function fetchJoke() {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch('https://icanhazdadjoke.com/', {
@@ -78,19 +77,47 @@ function fetchJoke() {
         return data.joke;
     });
 }
+// Exercise 5
+function fetchChuckNorrisJoke() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch('https://api.chucknorris.io/jokes/random');
+        const data = yield response.json();
+        return data.value;
+    });
+}
+;
+const nextJokeButton = document.getElementById('btn');
 nextJokeButton === null || nextJokeButton === void 0 ? void 0 : nextJokeButton.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
     if (ratedJoke.score !== undefined) {
         ratedJokes.push(ratedJoke);
         console.log('ratedJokes:', ratedJokes);
     }
-    const joke = yield fetchJoke();
-    console.log(joke);
-    // Exercise 2
-    const jokeParagraph = document.getElementById('jokeParagraph');
-    if (jokeParagraph) {
-        jokeParagraph.textContent = '';
+    const randomJoke = Math.ceil(Math.random() * 2);
+    let joke;
+    if (randomJoke === 1) {
+        joke = yield fetchJoke();
+        console.log(joke);
+        const jokeParagraph = document.getElementById('jokeParagraph');
+        if (jokeParagraph) {
+            jokeParagraph.textContent = '';
+        }
+        jokeParagraph === null || jokeParagraph === void 0 ? void 0 : jokeParagraph.append(joke);
     }
-    jokeParagraph === null || jokeParagraph === void 0 ? void 0 : jokeParagraph.append(joke);
+    if (randomJoke === 2) {
+        joke = yield fetchChuckNorrisJoke();
+        console.log(joke);
+        const jokeParagraph = document.getElementById('jokeParagraph');
+        if (jokeParagraph) {
+            jokeParagraph.textContent = '';
+        }
+        jokeParagraph === null || jokeParagraph === void 0 ? void 0 : jokeParagraph.append(joke);
+    }
+    // Exercise 2
+    /* const jokeParagraph = document.getElementById('jokeParagraph');
+    if (jokeParagraph) {
+      jokeParagraph.textContent = '';
+    }
+    jokeParagraph?.append(joke); */
     // Exercise 3
     const ratingButtons = document.getElementById('ratingButtons');
     ratingButtons.style.display = 'block';

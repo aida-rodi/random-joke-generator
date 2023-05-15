@@ -44,7 +44,6 @@ window.addEventListener('load', async () => {
   }
   weatherParagraph?.append(`${weatherIcon}  ${currentWeather.temperature}ºC`);
 });
-
 // **************
 
 const ratedJokes: Array<object> = [];
@@ -54,8 +53,6 @@ const date = new Date()
 const dateString = date.toISOString();
 
 // Exercise 1
-const nextJokeButton = document.getElementById('btn');
-
 async function fetchJoke(): Promise<string> {
   const response = await fetch('https://icanhazdadjoke.com/', {
     headers: {'Accept': 'application/json'}
@@ -65,21 +62,53 @@ async function fetchJoke(): Promise<string> {
   return data.joke;
 }
 
+// Exercise 5
+async function fetchChuckNorrisJoke(): Promise<string> {
+  const response = await fetch ('https://api.chucknorris.io/jokes/random');
+
+  const data = await response.json();
+  return data.value;
+};
+
+const nextJokeButton = document.getElementById('btn');
+
 nextJokeButton?.addEventListener('click', async () => {
   if (ratedJoke.score !== undefined) {
     ratedJokes.push(ratedJoke)
     console.log('ratedJokes:', ratedJokes);
   }
 
-  const joke = await fetchJoke();
-  console.log(joke);
+  const randomJoke = Math.ceil(Math.random() * 2);
+  let joke
   
+  if (randomJoke === 1) {
+    joke = await fetchJoke();
+    console.log(joke);
+
+    const jokeParagraph = document.getElementById('jokeParagraph');
+    if (jokeParagraph) {
+      jokeParagraph.textContent = '';
+    }
+    jokeParagraph?.append(joke);
+  }
+  
+  if (randomJoke === 2) {
+    joke = await fetchChuckNorrisJoke();
+    console.log(joke);
+
+    const jokeParagraph = document.getElementById('jokeParagraph');
+    if (jokeParagraph) {
+      jokeParagraph.textContent = '';
+    }
+    jokeParagraph?.append(joke);
+  }
+
   // Exercise 2
-  const jokeParagraph = document.getElementById('jokeParagraph');
+  /* const jokeParagraph = document.getElementById('jokeParagraph');
   if (jokeParagraph) {
     jokeParagraph.textContent = '';
   }
-  jokeParagraph?.append(joke);
+  jokeParagraph?.append(joke); */
 
   // Exercise 3
   const ratingButtons = document.getElementById('ratingButtons') as HTMLDivElement
